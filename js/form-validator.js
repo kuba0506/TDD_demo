@@ -1,9 +1,13 @@
 (function() {
     'use strict';
 
-    const formModule = {
+    const userForm = {
         name: 'test'
     };
 
-    window.formModule = formModule || {};
+    userForm.validateForm = form => {
+
+    };
+
+    window.userForm = userForm || {};
 }(window));

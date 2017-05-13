@@ -1,11 +1,44 @@
 const expect = chai.expect;
-const formModule = window.formModule;
 
-describe('Form module', () => {
+describe('User form', () => {
+    const userForm = window.userForm;
+    const validateForm = userForm.validateForm;
+    let actual;
+    let expected;
+    let form;
+    let age;
+    let firstName;
 
-    describe('Sanity check', () => {
-        it('should check if formModule exist', () => {
-            expect(formModule).to.exist;
+    describe('validateForm()', () => {
+        //Setup
+        beforeEach(() => {
+            form = document.querySelector('.user-form').cloneNode(true);
+            firstName = form.querySelector('input[name="first-name"]');
+            age = form.querySelector('input[name="age"]');
+        });
+
+        // Teardown
+        afterEach(() => {
+            firstName = void 0;
+            age = void 0;
+            actual = void 0;
+            expected = void 0;
+        });
+
+        it('[sanity check] should exist', () => {
+            expect(userForm.validateForm).to.exist;
+        });
+
+        it('should validate form if all inputs are correct', () => {
+            //Assemble
+            firstName.value = 'Kuba'; 
+            age.value = 33; 
+            //Act
+            actual = validateForm(form);
+            expected = true;
+            //Assert
+            expect(actual).to.be.ok;
         });
     });
+
 });
