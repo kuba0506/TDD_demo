@@ -3,6 +3,15 @@
 
     const userForm = { };
 
+    userForm.domIntoObject = inputs => {
+        return Array.from(inputs).map(input => ({
+            name: input.name,
+            validation: input.dataset.validation,
+            pattern: input.dataset.pattern,
+            value: input.value
+        }));
+    };
+
     userForm.validateForm = form => {
         const result = {
             errors: [],
@@ -11,22 +20,19 @@
             }
         };
 
-        //function to decouple input from DOM
-        const inputs = Array.from(form.querySelectorAll('input'));
         let isValid = false;
 
-        for (let input of inputs) {
+        for (let input of userForm.domIntoObject(form.querySelectorAll('input'))) {
             //function to validate one input
-
-            if (input.dataset.validation === 'alphabetical') {
-                isValid = new RegExp(input.dataset.pattern, 'i').test(input.value);
+            if (input.validation === 'alphabetical') {
+                isValid = new RegExp(input.pattern, 'i').test(input.value);
 
                 if (!isValid) {
                     //function to register an error
                     result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
                 }
-            } else if (input.dataset.validation === 'numeric') {
-                isValid = new RegExp(input.dataset.pattern, 'i').test(input.value);
+            } else if (input.validation === 'numeric') {
+                isValid = new RegExp(input.pattern, 'i').test(input.value);
 
                 if (!isValid) {
                     result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));

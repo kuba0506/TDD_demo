@@ -1,8 +1,9 @@
 const expect = chai.expect;
+const userForm = window.userForm;
+const validateForm = userForm.validateForm;
+const domIntoObject = userForm.domIntoObject;
 
 describe('User form', () => {
-    const userForm = window.userForm;
-    const validateForm = userForm.validateForm;
     let actual;
     let expected;
     let form;
@@ -34,6 +35,7 @@ describe('User form', () => {
             firstName.value = 'Kuba'; 
             age.value = 33; 
             //Act
+            console.log(firstName.value)
             actual = validateForm(form);
             //Assert
             expect(actual.isValid).to.be.ok;
