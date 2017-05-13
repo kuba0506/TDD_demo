@@ -73,6 +73,20 @@ describe('User form', () => {
             expect(actual.errors[0]).to.be.an.instanceOf(Error);
             expect(actual.errors[1]).to.be.an.instanceOf(Error);
         });
+
+        describe('domIntoObject()', () => {
+            it('should map DOM input into plain JS object', () => {
+                //Assemble
+                let name1 = 'first-name';
+                let name2 = 'age';
+                //Act
+                actual = domIntoObject([firstName, age]);
+                //Assert
+                expect(actual.length).to.equal(2);
+                expect(actual[0].name).to.equal(name1);
+                expect(actual[1].name).to.equal(name2);
+            });
+        });
     });
 
 });
