@@ -38,6 +38,17 @@ describe('User form', () => {
             //Assert
             expect(actual.isValid).to.be.ok;
         });
+
+        it('should throw error if \'first-name\' is invalid', () => {
+            //Assemble
+            firstName.value = '!!--'; 
+            age.value = '33'; 
+            //Act
+            actual = validateForm(form);
+            //Assert
+            expect(actual.isValid).to.be.false;
+            expect(actual.errors[0]).to.be.an.instanceOf(Error);
+        });
     });
 
 });
