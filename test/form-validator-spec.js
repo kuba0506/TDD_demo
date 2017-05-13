@@ -26,18 +26,17 @@ describe('User form', () => {
         });
 
         it('[sanity check] should exist', () => {
-            expect(userForm.validateForm).to.exist;
+            expect(validateForm).to.exist;
         });
 
         it('should validate form if all inputs are correct', () => {
             //Assemble
             firstName.value = 'Kuba'; 
-            age.value = 33; 
+            age.value = '33'; 
             //Act
             actual = validateForm(form);
-            expected = true;
             //Assert
-            expect(actual).to.be.ok;
+            expect(actual.isValid).to.be.ok;
         });
     });
 

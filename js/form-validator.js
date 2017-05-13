@@ -1,9 +1,7 @@
 (function() {
     'use strict';
 
-    const userForm = {
-        name: 'test'
-    };
+    const userForm = { };
 
     userForm.validateForm = form => {
 
