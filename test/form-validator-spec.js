@@ -58,6 +58,7 @@ describe('User form', () => {
             actual = validateForm(form);
             //Assert
             expect(actual.errors[0]).to.be.an.instanceOf(Error);
+            expect(actual.isValid).to.be.false;
         });
     });
 

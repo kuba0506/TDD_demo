@@ -23,6 +23,9 @@
                 }
             } else if (input.dataset.validation === 'numeric') {
                 isValid = new RegExp(input.dataset.pattern, 'i').test(input.value);
+                if (!isValid) {
+                    result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
+                }
             }
         }
 
