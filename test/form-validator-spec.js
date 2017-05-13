@@ -32,7 +32,7 @@ describe('User form', () => {
         it('should validate form if all inputs are correct', () => {
             //Assemble
             firstName.value = 'Kuba'; 
-            age.value = '33'; 
+            age.value = 33; 
             //Act
             actual = validateForm(form);
             //Assert
@@ -42,11 +42,21 @@ describe('User form', () => {
         it('should throw error if \'first-name\' is invalid', () => {
             //Assemble
             firstName.value = '!!--'; 
-            age.value = '33'; 
+            age.value = 33; 
             //Act
             actual = validateForm(form);
             //Assert
             expect(actual.isValid).to.be.false;
+            expect(actual.errors[0]).to.be.an.instanceOf(Error);
+        });
+
+        it('should throw error if \'age\' is invalid', () => {
+            //Assemble
+            firstName.value = 'Kuba'; 
+            age.value = '@_%'; 
+            //Act
+            actual = validateForm(form);
+            //Assert
             expect(actual.errors[0]).to.be.an.instanceOf(Error);
         });
     });
