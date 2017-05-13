@@ -60,6 +60,19 @@ describe('User form', () => {
             expect(actual.errors[0]).to.be.an.instanceOf(Error);
             expect(actual.isValid).to.be.false;
         });
+
+        it('should throw multiple errors if both  \'age\' and \'first-name\' are invalid ', () => {
+            //Assemble
+            firstName.value = '@Kuba'; 
+            age.value = '@_%'; 
+            //Act
+            actual = validateForm(form);
+            expected = 2;
+            //Assert
+            expect(actual.errors.length).to.equal(expected);
+            expect(actual.errors[0]).to.be.an.instanceOf(Error);
+            expect(actual.errors[1]).to.be.an.instanceOf(Error);
+        });
     });
 
 });
