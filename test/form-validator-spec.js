@@ -132,6 +132,22 @@ describe('User form', () => {
                 expect(actual).to.be.instanceOf(Error);
             });
         });
+
+        describe('addError()', () => {
+            it('should add error if input is invalid', () => {
+                //Assemble
+                let input =  {};
+                input.value = '123xa';
+                actual = {
+                    errors: []
+                };
+                //Act
+                addError(actual, input);
+                //Asert
+                // expect(actual.errors.length).to.equal(1);
+                expect(actual.errors[0]).to.be.an.instanceOf(Error);
+            });
+        });
     });
 
 });

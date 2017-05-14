@@ -1,9 +1,9 @@
-(function() {
+(function () {
     'use strict';
 
-    const userForm = { };
+    const userForm = {};
 
-    userForm.validateItem  = item => {
+    userForm.validateItem = item => {
         if (!item.name) {
             return new Error(`Validation failed: "name" is missing`);
         }
@@ -31,25 +31,16 @@
 
         for (let input of userForm.domIntoObject(form.querySelectorAll('input'))) {
             //function to validate one input
-            if (input.validation === 'alphabetical') {
-                isValid = new RegExp(input.pattern, 'i').test(input.value);
+            isValid = userForm.validateItem(input);
 
-                if (!isValid) {
-                    //function to register an error
-                    result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
-                }
-            } else if (input.validation === 'numeric') {
-                isValid = new RegExp(input.pattern, 'i').test(input.value);
-
-                if (!isValid) {
-                    result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
-                }
+            if (!isValid) {
+                //function to register an error
+                result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
             }
-
         }
 
-        return result;
-    };
+    return result;
+};
 
-    window.userForm = userForm || {};
+window.userForm = userForm || {};
 }(window));
