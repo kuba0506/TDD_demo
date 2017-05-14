@@ -91,7 +91,7 @@ describe('User form', () => {
         });
 
         describe('validateItem()', () => {
-            it('should return true if item matches pattern', () => {
+            it('should return true if item matches a pattern', () => {
                 //Assemble
                 let input = {
                     name: "age",
@@ -103,6 +103,20 @@ describe('User form', () => {
                 actual = validateItem(input);
                 //Assert
                 expect(actual).to.be.true;
+            });
+
+            it('should return false if item does not match a pattern', () => {
+                //Assemble
+                let input = {
+                    name: "first-name",
+                    pattern: "^[a-z]+$",
+                    validation: "alphabetical",
+                    value: "!@@Kuba"
+                };
+                //Act
+                actual = validateItem(input);
+                //Assert
+                expect(actual).to.be.false;
             });
         });
     });
