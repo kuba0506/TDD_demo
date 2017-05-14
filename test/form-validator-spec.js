@@ -3,6 +3,7 @@ const userForm = window.userForm;
 const validateForm = userForm.validateForm;
 const domIntoObject = userForm.domIntoObject;
 const validateItem = userForm.validateItem;
+const addError = userForm.addError;
 
 describe('User form', () => {
     let actual;
@@ -144,7 +145,7 @@ describe('User form', () => {
                 //Act
                 addError(actual, input);
                 //Asert
-                // expect(actual.errors.length).to.equal(1);
+                expect(actual.errors.length).to.equal(1);
                 expect(actual.errors[0]).to.be.an.instanceOf(Error);
             });
         });

@@ -3,6 +3,10 @@
 
     const userForm = {};
 
+    userForm.addError = (arr, input) => {
+        return arr.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
+    };
+
     userForm.validateItem = item => {
         if (!item.name) {
             return new Error(`Validation failed: "name" is missing`);
@@ -35,7 +39,8 @@
 
             if (!isValid) {
                 //function to register an error
-                result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
+                userForm.addError(result, input);
+                // result.errors.push(new Error(`The ${input.name} ${input.value} is not valid`));
             }
         }
 
