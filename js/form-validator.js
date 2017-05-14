@@ -4,6 +4,9 @@
     const userForm = { };
 
     userForm.validateItem  = item => {
+        if (!item.name) {
+            return new Error(`Validation failed: "name" is missing`);
+        }
         return new RegExp(item.pattern, 'i').test(item.value);
     };
 

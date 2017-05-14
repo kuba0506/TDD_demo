@@ -122,7 +122,6 @@ describe('User form', () => {
             it('should throw error \'name\' property is missing', () => {
                 //Assemble
                 let input = {
-                    // name: "first-name",
                     pattern: "^[a-z]+$",
                     validation: "alphabetical",
                     value: "Kuba"
