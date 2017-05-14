@@ -118,6 +118,20 @@ describe('User form', () => {
                 //Assert
                 expect(actual).to.be.false;
             });
+
+            it('should throw error \'name\' property is missing', () => {
+                //Assemble
+                let input = {
+                    // name: "first-name",
+                    pattern: "^[a-z]+$",
+                    validation: "alphabetical",
+                    value: "Kuba"
+                };
+                //Act
+                actual = validateItem(input);
+                //Assert
+                expect(actual).to.be.instanceOf(Error);
+            });
         });
     });
 
