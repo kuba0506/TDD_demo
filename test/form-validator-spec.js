@@ -32,10 +32,9 @@ describe('User form', () => {
 
         it('should validate form if all inputs are correct', () => {
             //Assemble
-            firstName.value = 'Kuba'; 
-            age.value = 33; 
+            firstName.value = 'Kuba';
+            age.value = 33;
             //Act
-            console.log(firstName.value)
             actual = validateForm(form);
             //Assert
             expect(actual.isValid).to.be.ok;
@@ -43,8 +42,8 @@ describe('User form', () => {
 
         it('should throw error if \'first-name\' is invalid', () => {
             //Assemble
-            firstName.value = '!!--'; 
-            age.value = 33; 
+            firstName.value = '!!--';
+            age.value = 33;
             //Act
             actual = validateForm(form);
             //Assert
@@ -54,8 +53,8 @@ describe('User form', () => {
 
         it('should throw error if \'age\' is invalid', () => {
             //Assemble
-            firstName.value = 'Kuba'; 
-            age.value = '@_%'; 
+            firstName.value = 'Kuba';
+            age.value = '@_%';
             //Act
             actual = validateForm(form);
             //Assert
@@ -65,8 +64,8 @@ describe('User form', () => {
 
         it('should throw multiple errors if both  \'age\' and \'first-name\' are invalid ', () => {
             //Assemble
-            firstName.value = '@Kuba'; 
-            age.value = '@_%'; 
+            firstName.value = '@Kuba';
+            age.value = '@_%';
             //Act
             actual = validateForm(form);
             expected = 2;
@@ -87,6 +86,22 @@ describe('User form', () => {
                 expect(actual.length).to.equal(2);
                 expect(actual[0].name).to.equal(name1);
                 expect(actual[1].name).to.equal(name2);
+            });
+        });
+
+        describe('validateItem()', () => {
+            it('should return true if item matches pattern', () => {
+                //Assemble
+                let input = {
+                    name: "age",
+                    pattern: "^[0-9]+$",
+                    validation: "numeric",
+                    value: "33"
+                };
+                //Act
+                actual = validateItem(input);
+                //Assert
+                expect(actual).to.be.true;
             });
         });
     });
