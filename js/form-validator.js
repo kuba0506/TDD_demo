@@ -3,6 +3,10 @@
 
     const userForm = { };
 
+    userForm.validateItem  = item => {
+        return new RegExp(item.pattern, 'i').test(item.value);
+    };
+
     userForm.domIntoObject = inputs => {
         return Array.from(inputs).map(input => ({
             name: input.name,

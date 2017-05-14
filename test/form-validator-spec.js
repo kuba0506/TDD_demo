@@ -2,6 +2,7 @@ const expect = chai.expect;
 const userForm = window.userForm;
 const validateForm = userForm.validateForm;
 const domIntoObject = userForm.domIntoObject;
+const validateItem = userForm.validateItem;
 
 describe('User form', () => {
     let actual;
